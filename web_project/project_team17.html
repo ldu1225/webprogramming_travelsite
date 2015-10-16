@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<html lang="us">
+    <head>
+    <title>WEB PROGRAMMING TEAM 17</title>
+  
+    <meta charset="utf-8" />
+    <meta charset="utf-8" />
+   	<meta name="description" content="web_programming team 17" />
+    <meta name="keywords" content="jquery, css3, images, wall, thumbnails, slide, animate"/>
+    <meta name="author" content="Codrops" />
+   
+    <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.css" />     
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+    <link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-thumbs.css?v=1.0.7" />
+    <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.4.custom.css" />
+    
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>     
+    
+ 	<!-- Add jQuery library -->
+	<script type="text/javascript" src="fancybox/jquery-1.10.1.min.js"></script>
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="fancybox/jquery.fancybox.js?v=2.1.5"></script>
+	<!-- Add Thumbnail helper (this is optional) -->
+	<script type="text/javascript" src="fancybox/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    
+    
+     <style>
+        body { font-size: 62.5% }
+        h1 { text-align:center; }
+        input[type="text"], label {
+            margin-bottom: 12px; padding: .4em; 
+            width: 95%;
+       }
+     </style>
+    
+     <style>
+       #images { overflow: hidden; }
+         .flickr_image { float: left; }
+         .flickr_image>  img {
+           width: 200px; height: 120px;
+           float: left;
+       }
+  	</style>
+	 
+	<style type="text/css">
+		.fancybox-custom .fancybox-skin {
+			box-shadow: 0 0 50px #222;
+		}
+
+		body {
+			max-width: 700px;
+			margin: 0 auto;
+		}
+		.fancybox-title {
+           padding: 0 0 0px 0;
+
+        }
+	</style>
+    
+    
+
+    <script language="javascript">
+    
+    //충돌방지
+     $.noConflict();
+      var J = jQuery;
+      
+        J(document).ready(function () {
+            //fancybox 플러그인            
+			// Change title type, overlay closing speed
+			J(".fancybox-effects-a").fancybox({
+				helpers: {
+					title : {
+						type : 'outside'
+					},
+					overlay : {
+						speedOut : 0
+					}
+				}
+			});
+
+			// Disable opening and closing animations, change title type
+			J(".fancybox-effects-b").fancybox({
+				openEffect  : 'none',
+				closeEffect	: 'none',
+
+				helpers : {
+					title : {
+						type : 'over'
+					}
+				}
+			});
+
+			// Set custom style, close if clicked, change title type and overlay color
+			J(".fancybox-effects-c").fancybox({
+				wrapCSS    : 'fancybox-custom',
+				closeClick : true,
+
+				openEffect : 'none',
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					overlay : {
+						css : {
+							'background' : 'rgba(238,238,238,0.85)'
+						}
+					}
+				}
+			});
+
+			// Remove padding, set opening and closing animations, close if clicked and disable overlay
+			J(".fancybox-effects-d").fancybox({
+				padding: 0,
+
+				openEffect : 'elastic',
+				openSpeed  : 'slow',
+
+				closeEffect : 'elastic',
+				closeSpeed  : 'slow',
+
+				closeClick : true,
+
+				helpers : {
+					overlay : null
+				}
+			});
+            
+			J('li').fancybox({
+				
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : true,
+				arrows    : true,
+				nextClick : true,
+
+				helpers : {
+					thumbs : {
+						width  : 100,
+						height : 100
+					}
+				}
+			});
+			
+			// 이벤트 연결
+            J('#open-button').click(function () {
+                J('#dialog').dialog('open');
+            });
+
+            // jQuery UI DatePicker 플러그인
+            J('#event-date').datepicker({
+                dateFormat: 'yy/mm/dd',
+                numberOfMonths: 2
+            });
+			
+			// jQuery UI Dialog 플러그인
+            J('#dialog').dialog({
+                autoOpen: false,
+                buttons: {
+                    submit: function () {
+                        // 변수를 선언합니다.
+                        var eventName = $('#event-name').val();
+                        var eventDate = $('#event-date').val();
+
+                        // 출력합니다.
+                        J('<h1></h1>').html(eventName + ' : ' + eventDate).appendTo('#output');
+
+                        // 다이얼로그를 닫습니다.
+                        J('#event-name').val('');
+                        J('#event-date').val('');
+                        J('#dialog').dialog('close');
+                    },
+                    reset: function () {
+                        J('#event-name').val('');
+                        J('#event-date').val('');
+                    },
+                    cancel: function () {
+                        J('#event-name').val('');
+                        J('#event-date').val('');
+                        J('#dialog').dialog('close');
+                    }
+                },
+                modal: true
+            });
+				
+    });
+   </script>   
+   </head>
+     
+<body>
+     
+    <!-- make own travel -->
+    <h1 id="open-button">
+    <button onclick="open-button" style="position: absolute; right: 20px; top: 60px"> Design your travel! </button>
+    </h1>
+    <h1 id="output"></h1>
+   
+    <!-- 다이얼로그 -->
+    <div id="dialog" title="Let's Go!">
+        <h1>Make your own travel!</h1>
+        <label for="event-name">where?</label>
+        <input id="event-name" type="text" />
+        <label for="event-date">when?</label>
+        <input id="event-date" type="text" />
+    </div>
+    
+     <!-- music player -->
+   	<script>
+     	var bgm = new Audio('');
+    	var myTest = new Array("bgm/France.mp3", "bgm/Italy.mp3", "bgm/Spain.mp3","bgm/Switzerland.mp3", "bgm/UnitedKingdom.mp3");
+    	function randomItem(myTest) {
+      		return myTest[Math.floor(Math.random() * myTest.length)];
+    	}
+    	var bgm_url = randomItem(myTest);
+    	bgm = new Audio(bgm_url);
+	</script>
+	
+	<button style="position: absolute; top:20px; right: 80px; " onclick="bgm.play()"><img src="play30px.png"></button>
+	<button style="position: absolute; top:20px; right: 20px; " onclick="bgm.pause()"><img src="pause30px.png"></button>
+	
+    
+      <div class="content">
+         <header>
+            <h1>WEB PROGRAMMING PROJECT</h1>
+            <span>LEE SEO YEON, LEE DONG WOOK, HONG JOO HYE</span>
+         </header>
+      
+         <div class="iw_wrapper">
+            <ul class="iw_thumbs" id="iw_thumbs">        
+                 
+               <li title="'London Eye' in the United Kingdom" data-fancybox-group="thumb" href = "1.jpg"><img src= "1.jpg" alt="Thumb1"/></li>
+               <li title="'Jungfrau' in Switzerland" data-fancybox-group="thumb" href = "2.jpg"><img src="2.jpg" alt="Thumb2"/></li>               
+               <li title="'Big Ben' in the United Kingdom" data-fancybox-group="thumb" href = "3.jpg"><img src="3.jpg" alt="Thumb3"/></li>
+               <li title="'Praha' in Czech" data-fancybox-group="thumb" href = "4.jpg"><img src="4.jpg" alt="Thumb4"/></li>
+               <li title="'The Eiffel Tower' in France" data-fancybox-group="thumb" href = "5.jpg"><img src="5.jpg" alt="Thumb5"/></li>
+               <li title="'Colosseum' in Italy" data-fancybox-group="thumb" href = "6.jpg"><img src="6.jpg" alt="Thumb6"/></li>
+               <li title="'Duomo' in Italy" data-fancybox-group="thumb" href = "7.jpg"><img src="7.jpg" alt="Thumb7"/></li>
+               <li title="'Jungfrau' in Switzerland" data-fancybox-group="thumb" href = "8.jpg"><img src="8.jpg" alt="Thumb8"/></li>
+               <li title="'Westminster' in the United Kingdom" data-fancybox-group="thumb" href = "9.jpg"><img src="9.jpg" alt="Thumb9"/></li>
+               <li title="'Triumphal arch' in France" data-fancybox-group="thumb" href = "10.jpg"><img src="10.jpg" alt="Thumb10"/></li>
+               <li title="'Trafalgar Square' in the United Kingdom" data-fancybox-group="thumb" href = "11.jpg"><img src="11.jpg" alt="Thumb11"/></li>
+               <li title="'Venezia' in Italy" data-fancybox-group="thumb" href = "12.jpg"><img src="12.jpg" alt="Thumb12"/></li>
+               <li title="'Zug clocktower' in Czech" data-fancybox-group="thumb" href = "13.jpg"><img src="13.jpg" alt="Thumb13"/></li>
+               <li title="'Santorini' in Greece" data-fancybox-group="thumb" href = "14.jpg"><img src="14.jpg" alt="Thumb14"/></li>
+               <li title="'Barcelona' in Spain" data-fancybox-group="thumb" href = "15.jpg"><img src="15.jpg" alt="Thumb15"/></li>
+               <li title="'The city hall square' in Germany " data-fancybox-group="thumb" href = "16.jpg"><img src="16.jpg" " alt="Thumb16"/></li>
+               <li title="'Old town' in Denmark" data-fancybox-group="thumb" href = "17.jpg"><img src="17.jpg" alt="Thumb17"/></li>
+               <li title=" Germany " data-fancybox-group="thumb" href = "18.jpg"><img src="18.jpg" alt="Thumb18"/></li>
+               <li title="'Sevilla' in Spain " data-fancybox-group="thumb" href = "19.jpg"><img src="19.jpg" alt="Thumb19"/></li>               
+            </ul>
+         </div>
+
+      </div>
+   
+      <div class="footer">
+         <a class="left"><span>&laquo; KIM YOUNG MAN professor: </span> copyright(c)2014 All rights reserved by TEAM17 :)</a>
+         <a href="http://eecs.kookmin.ac.kr/"><strong>Computer science</strong></a>
+         <a href="http://www.kookmin.ac.kr/" target="_blank"> KOOKMIN UNIVERCITY </a>
+      </div>
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+      <script type="text/javascript" src="js/jquery.masonry.min.js"></script>
+      <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+      <script type="text/javascript">
+
+
+      </script>
+
+
+    </body>
+
+</html>
+ 
